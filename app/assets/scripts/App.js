@@ -2,8 +2,12 @@ var time = new Date;
 var timerRunning = false;
 
 var clockDisplay = document.getElementById('clock-display');
-var timerSetter = doxument.getElementById('clock-display');
+var timerSetter = document.getElementById('timer-setter');
 
+timerSetter.addEventListener('change', function(){
+  console.log(timerSetter.value);
+  time.setMinutes(timerSetter.value);
+});
 
 console.log(time);
 time.setSeconds(30);
