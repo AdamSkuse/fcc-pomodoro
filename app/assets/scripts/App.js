@@ -3,11 +3,10 @@ var timerRunning = false;
 
 var clockDisplay = document.getElementById('clock-display');
 var timerSetter = document.getElementById('timer-setter');
+var startButton = document.getElementById('start-button');
 
-timerSetter.addEventListener('change', function(){
-  console.log(timerSetter.value);
-  time.setMinutes(timerSetter.value);
-});
+timerSetter.addEventListener('change', setTimer);
+startButton.addEventListener('click', startTimer);
 
 console.log(time);
 time.setSeconds(30);
@@ -17,7 +16,8 @@ console.log(time.getMinutes());
 console.log(time.getMinutes());
 
 function setTimer() {
-
+  console.log(timerSetter.value);
+  time.setMinutes(timerSetter.value);
 }
 
 
