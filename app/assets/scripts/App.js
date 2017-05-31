@@ -7,16 +7,26 @@ var isBreak = false;
 var timerIsRunning = false;
 
 var clockDisplay = document.getElementById('clock-display');
+var workRestDisplay = document.getElementById('work-rest-display');
 var startButton = document.getElementById('start-button');
+var worktimeSetter = document.getElementById('worktime-setter');
+var breaktimeSetter = document.getElementById('breaktime-setter');
 
+function setTimers() {
+  workInterval.mins = worktimeSetter.value;
+  breakInterval.mins = breaktimeSetter.value;
+}
+  
 startButton.addEventListener('click', function(){startButtonClick()});
 
 
 function startButtonClick() {
   if (!timerIsRunning) {
     if(!isBreak) {
+      workRestDisplay.innerHTML = "Work time!";
       startTimer(currentWorkTimer);
     } else {
+      workRestDisplay.innerHTML = "Break time!";
       startTimer(currentBreakTimer);
     }
   
@@ -74,9 +84,11 @@ function timerTick(timer) {
     
     if (isBreak) {
       console.log('Break timer!');
+      workRestDisplay.innerHTML = "Break time!";
       startTimer(currentBreakTimer);
     } else {
       console.log('Task timer!');
+      workRestDisplay.innerHTML = "Work time!";
       startTimer(currentWorkTimer);
     }
 
