@@ -1,36 +1,67 @@
-var time = new Date;
-var timerRunning = false;
+var timerId;
+var workInterval = {mins: 0, secs: 10};
+var currentWorkTimer = {mins: 0, secs: 10};
+var breakInterval = {mins: 0, secs: 5};
+var currentBreakTimer = {mins: 0, secs: 5};
+var isBreak = false;
+var timerIsRunning = false;
 
-var clockDisplay = document.getElementById('clock-display');
-var timerSetter = document.getElementById('timer-setter');
-var startButton = document.getElementById('start-button');
-
-timerSetter.addEventListener('change', setTimer);
-startButton.addEventListener('click', startTimer);
-
-console.log(time);
-time.setSeconds(30);
-time.setMinutes(0);
-console.log(time.getSeconds());
-console.log(time.getMinutes());
-console.log(time.getMinutes());
-
-function setTimer() {
-  console.log(timerSetter.value);
-  time.setMinutes(timerSetter.value);
+function resetCurrentTimers() {
+  currentBreakTimer.secs = breakInterval.secs;
+  currentBreakTimer.mins = breakInterval.mins;
+  currentWorkTimer.secs = workInterval.secs;
+  currentWorkTimer.mins = workInterval.mins;
+  
 }
 
+function startNewTimer(){
+  resetCurrentTimers();
+  startTimer(currentWorkTimer);
+}
 
-function startTimer(){
-  var timerRunning = true;
-  var timerInterval = setInterval(function(){
-    time.setSeconds(time.getSeconds() - 1);
-    clockDisplay.innerHTML = 'mins: ' + time.getMinutes() + ' secs: ' + time.getSeconds();
-    console.log('mins: ' + time.getMinutes() + ' secs: ' + time.getSeconds())
-    if (time.getMinutes() === 0 && time.getSeconds()=== 0){
-      console.log('time up!');
-      timerRunning = false;
-      clearInterval(timerInterval);
+function startTimer(timer){
+  timerId = setInterval(function(){timerTick(timer)}, 1000);
+  timerIsRunning = true;
+}
+
+function pauseTimer() {
+  clearInterval(timerId);
+  timerIsRunning = false;
+}
+
+function unpauseTimer() {
+  if (isBreak) {
+    startTimer(currentBreakTimer);
+  } else {
+    startTimer(currentWorkTimer);
+  }
+}
+
+function timerTick(timer) {
+  if ((timer.mins >= 0) && (timer.secs >= 0)) {
+  
+   console.log(timer.mins + ':' + timer.secs);
+   if (timer.secs >= 1) {
+      timer.secs --;
+    } else {
+      timer.mins --;
+      timer.secs = 59;
+   }
+  } else {
+    pauseTimer();
+    isBreak = !isBreak;
+    resetCurrentTimers();
+    console.log('Break: ' + isBreak)
+    
+    if (isBreak) {
+      console.log('Break timer!');
+      startTimer(currentBreakTimer);
+    } else {
+      console.log('Task timer!');
+      startTimer(currentWorkTimer);
     }
-  },1000);
+
+  }
 }
+
+
