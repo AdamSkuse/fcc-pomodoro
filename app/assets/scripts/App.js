@@ -6,12 +6,31 @@ var currentBreakTimer = {mins: 0, secs: 5};
 var isBreak = false;
 var timerIsRunning = false;
 
+var clockDisplay = document.getElementById('clock-display');
+var startButton = document.getElementById('start-button');
+
+startButton.addEventListener('click', function(){startButtonClick()});
+
+
+function startButtonClick() {
+  if (!timerIsRunning) {
+    if(!isBreak) {
+      startTimer(currentWorkTimer);
+    } else {
+      startTimer(currentBreakTimer);
+    }
+  
+  } else {
+    pauseTimer();
+  }
+}
+
+
 function resetCurrentTimers() {
   currentBreakTimer.secs = breakInterval.secs;
   currentBreakTimer.mins = breakInterval.mins;
   currentWorkTimer.secs = workInterval.secs;
   currentWorkTimer.mins = workInterval.mins;
-  
 }
 
 function startNewTimer(){
@@ -39,8 +58,8 @@ function unpauseTimer() {
 
 function timerTick(timer) {
   if ((timer.mins >= 0) && (timer.secs >= 0)) {
-  
-   console.log(timer.mins + ':' + timer.secs);
+    clockDisplay.innerHTML = "Mins: " + timer.mins + " Secs: " + timer.secs;
+    console.log(timer.mins + ':' + timer.secs);
    if (timer.secs >= 1) {
       timer.secs --;
     } else {
