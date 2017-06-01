@@ -17,10 +17,14 @@
 <body>
   <h1>Pomodoro clock</h1>
   
-  <button type="button" id="set-times-button">Set times</button>
   <button type="button" id="start-button">Start</button>
   <div class="clock-display"><h3>Timer</h3><span id="clock-display"></span><br><span id="work-rest-display"></span></div>
-  <div class="settings-display"><h3>Settings</h3>Work period: <input type="number" id="worktime-setter" value="2"><br>Rest period:<input type="number" id="breaktime-setter" value="2"></div>
+  <div class="settings-display">
+    <h3>Settings</h3>
+    Work period: <button type="button" id="worktime-setter-increase">+</button><span id="worktime-setter-display"></span><button type="button" id="worktime-setter-decrease">-</button><br>
+    Rest period: <button type="button" id="breaktime-setter-increase">+</button><span id="breaktime-setter-display"></span><button type="button" id="breaktime-setter-decrease">-</button><br>
+    <button type="button" id="set-times-button">Set times</button>
+  </div>
   <!-- build:js assets/scripts/App.js -->
   <script src="assets/scripts/App.js"></script>
   <!-- endbuild -->

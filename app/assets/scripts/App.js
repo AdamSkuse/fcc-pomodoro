@@ -9,12 +9,16 @@ var timerIsRunning = false;
 var clockDisplay = document.getElementById('clock-display');
 var workRestDisplay = document.getElementById('work-rest-display');
 var startButton = document.getElementById('start-button');
-var worktimeSetter = document.getElementById('worktime-setter');
-var breaktimeSetter = document.getElementById('breaktime-setter');
+var worktimeSetterDisplay = document.getElementById('worktime-setter-display');
+var breaktimeSetterDisplay = document.getElementById('breaktime-setter-display');
+
+worktimeSetterDisplay.innerHTML = workInterval.secs; 
+breaktimeSetterDisplay.innerHTML = breakInterval.secs; 
+clockDisplay.innerHTML = "Mins: " + workInterval.mins + " Secs: " + workInterval.secs;
 
 function setTimers() {
-  workInterval.mins = worktimeSetter.value;
-  breakInterval.mins = breaktimeSetter.value;
+  workInterval.secs = worktimeSetter.value;
+  breakInterval.secs = breaktimeSetter.value;
 }
   
 startButton.addEventListener('click', function(){startButtonClick()});
