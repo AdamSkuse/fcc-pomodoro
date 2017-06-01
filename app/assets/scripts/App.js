@@ -20,18 +20,24 @@ breaktimeSetter.value = breakInterval.secs;
 startButton.addEventListener('click', function(){startButtonClick()});
 setTimesButton.addEventListener('click', function(){setTimers()});
 
+//rest timers so all are initially derived from default input values
+setTimers();
+resetCurrentTimers();
+
 function setTimers() {
   if (!timerIsRunning) {
     workInterval.secs = worktimeSetter.value;
     breakInterval.secs = breaktimeSetter.value;
     isBreak = false;
-    workRestDisplay.innerHTML = "";
-    clockDisplay.innerHTML = "Mins: " + workInterval.mins + " Secs: " + workInterval.secs;
+    resetDisplays();
     resetCurrentTimers();
   }
 }
   
-
+function resetDisplays() {
+    workRestDisplay.innerHTML = "";
+    clockDisplay.innerHTML = "Mins: " + workInterval.mins + " Secs: " + workInterval.secs;
+}
 
 function startButtonClick() {
   if (!timerIsRunning) {
@@ -42,7 +48,6 @@ function startButtonClick() {
       workRestDisplay.innerHTML = "Break time!";
       startTimer(currentBreakTimer);
     }
-  
   } else {
     pauseTimer();
   }
@@ -53,7 +58,6 @@ function resetCurrentTimers() {
   currentBreakTimer.mins = breakInterval.mins;
   currentWorkTimer.secs = workInterval.secs;
   currentWorkTimer.mins = workInterval.mins;
-
 }
 
 function startTimer(timer){
@@ -66,18 +70,9 @@ function pauseTimer() {
   timerIsRunning = false;
 }
 
-function unpauseTimer() {
-  if (isBreak) {
-    startTimer(currentBreakTimer);
-  } else {
-    startTimer(currentWorkTimer);
-  }
-}
-
 function timerTick(timer) {
   if ((timer.mins >= 0) && (timer.secs >= 0)) {
     clockDisplay.innerHTML = "Mins: " + timer.mins + " Secs: " + timer.secs;
-    console.log(timer.mins + ':' + timer.secs);
    if (timer.secs >= 1) {
       timer.secs --;
     } else {
@@ -88,18 +83,14 @@ function timerTick(timer) {
     pauseTimer();
     isBreak = !isBreak;
     resetCurrentTimers();
-    console.log('Break: ' + isBreak)
     
     if (isBreak) {
-      console.log('Break timer!');
       workRestDisplay.innerHTML = "Break time!";
       startTimer(currentBreakTimer);
     } else {
-      console.log('Task timer!');
       workRestDisplay.innerHTML = "Work time!";
       startTimer(currentWorkTimer);
     }
-
   }
 }
 
