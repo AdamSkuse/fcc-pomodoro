@@ -21,8 +21,8 @@
   <div class="clock-display"><h3>Timer</h3><span id="clock-display"></span><br><span id="work-rest-display"></span></div>
   <div class="settings-display">
     <h3>Settings</h3>
-    Work period: <button type="button" id="worktime-setter-increase">+</button><span id="worktime-setter-display"></span><button type="button" id="worktime-setter-decrease">-</button><br>
-    Rest period: <button type="button" id="breaktime-setter-increase">+</button><span id="breaktime-setter-display"></span><button type="button" id="breaktime-setter-decrease">-</button><br>
+    Work period: <input id="worktime-setter" type="number" min="1" max="60" step="1"><br> 
+    Break period: <input id="breaktime-setter" type="number" min="1" max="60" step="1"><br>
     <button type="button" id="set-times-button">Set times</button>
   </div>
   <!-- build:js assets/scripts/App.js -->

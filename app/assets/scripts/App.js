@@ -9,19 +9,28 @@ var timerIsRunning = false;
 var clockDisplay = document.getElementById('clock-display');
 var workRestDisplay = document.getElementById('work-rest-display');
 var startButton = document.getElementById('start-button');
-var worktimeSetterDisplay = document.getElementById('worktime-setter-display');
-var breaktimeSetterDisplay = document.getElementById('breaktime-setter-display');
+var worktimeSetter = document.getElementById('worktime-setter');
+var breaktimeSetter = document.getElementById('breaktime-setter');
+var setTimesButton = document.getElementById('set-times-button');
 
-worktimeSetterDisplay.innerHTML = workInterval.secs; 
-breaktimeSetterDisplay.innerHTML = breakInterval.secs; 
 clockDisplay.innerHTML = "Mins: " + workInterval.mins + " Secs: " + workInterval.secs;
+worktimeSetter.value = workInterval.secs;
+breaktimeSetter.value = breakInterval.secs;
+
+startButton.addEventListener('click', function(){startButtonClick()});
+setTimesButton.addEventListener('click', function(){setTimers()});
 
 function setTimers() {
-  workInterval.secs = worktimeSetter.value;
-  breakInterval.secs = breaktimeSetter.value;
+  if (!timerIsRunning) {
+    workInterval.secs = worktimeSetter.value;
+    breakInterval.secs = breaktimeSetter.value;
+    isBreak = false;
+    workRestDisplay.innerHTML = "";
+    clockDisplay.innerHTML = "Mins: " + workInterval.mins + " Secs: " + workInterval.secs;
+    resetCurrentTimers();
+  }
 }
   
-startButton.addEventListener('click', function(){startButtonClick()});
 
 
 function startButtonClick() {
@@ -39,17 +48,12 @@ function startButtonClick() {
   }
 }
 
-
 function resetCurrentTimers() {
   currentBreakTimer.secs = breakInterval.secs;
   currentBreakTimer.mins = breakInterval.mins;
   currentWorkTimer.secs = workInterval.secs;
   currentWorkTimer.mins = workInterval.mins;
-}
 
-function startNewTimer(){
-  resetCurrentTimers();
-  startTimer(currentWorkTimer);
 }
 
 function startTimer(timer){
