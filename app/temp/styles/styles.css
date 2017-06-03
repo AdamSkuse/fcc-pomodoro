@@ -453,6 +453,9 @@ template {
 
 body {
   padding: 40px 80px 40px 80px;
+  color: #fff;
+  background-color: #000;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .container {
@@ -463,8 +466,39 @@ body {
 
 .clock-display {
   font-size: 5rem;
+  padding: 20px;
 }
 
 .work-rest-display {
   min-height: 20px;
+  padding-bottom: 20px;
 }
+
+.settings-display {
+  padding: 40px;
+}
+
+button {
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    width: 200px;
+    border-color: #fff;
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 20px;
+  }
+
+button:hover {
+    background-color: #fff;
+    color: #000;
+    border-color: #ccc;
+  }
+
+button:focus {
+    outline:none;
+  }
+
+.input {
+    padding: 5px;
+  }

@@ -106,5 +106,5 @@ function updateTimerDisplay(timer) {
   }  else {
     secsToDisplay = "0".concat(timer.secs.toString());
   }
-  clockDisplay.innerHTML = minsToDisplay + " : " + secsToDisplay;
+  clockDisplay.innerHTML = minsToDisplay + ":" + secsToDisplay;
 }
