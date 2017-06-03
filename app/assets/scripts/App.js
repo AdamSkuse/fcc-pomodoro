@@ -13,8 +13,12 @@ var worktimeSetter = document.getElementById('worktime-setter');
 var breaktimeSetter = document.getElementById('breaktime-setter');
 var setTimesButton = document.getElementById('set-times-button');
 
-worktimeSetter.value = workInterval.secs;
-breaktimeSetter.value = breakInterval.secs;
+function resetSetters(){
+  worktimeSetter.value = workInterval.secs;
+  breaktimeSetter.value = breakInterval.secs;
+}
+
+resetSetters();
 
 startButton.addEventListener('click', function(){startButtonClick()});
 setTimesButton.addEventListener('click', function(){setTimers()});
@@ -25,11 +29,16 @@ resetCurrentTimers();
 
 function setTimers() {
   if (!timerIsRunning) {
-    workInterval.secs = worktimeSetter.value;
-    breakInterval.secs = breaktimeSetter.value;
-    isBreak = false;
-    resetDisplays();
-    resetCurrentTimers();
+    if ((worktimeSetter.value >= 1 && worktimeSetter.value <= 59) && (breaktimeSetter.value >= 1 && breaktimeSetter.value <= 59)) {
+      workInterval.secs = worktimeSetter.value;
+      breakInterval.secs = breaktimeSetter.value;
+      isBreak = false;
+      resetDisplays();
+      resetCurrentTimers();
+    } else {
+      alert("Times must be between 1 and 59");
+      resetSetters();    
+    }
   }
 }
   
