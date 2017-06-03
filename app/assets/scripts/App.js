@@ -45,6 +45,7 @@ function setTimers() {
 function resetDisplays() {
     workRestDisplay.innerHTML = "";
     updateTimerDisplay(workInterval); 
+  
 }
 
 function startButtonClick() {
@@ -93,6 +94,7 @@ function timerTick(timer) {
   } else {
     pauseTimer();
     isBreak = !isBreak;
+    playSound();
     resetCurrentTimers();
     
     if (isBreak) {
@@ -115,8 +117,15 @@ function updateTimerDisplay(timer) {
   
   if (timer.secs >= 10) {
     secsToDisplay = timer.secs;
+    clockDisplay.style.color = "#00ff00";
   }  else {
     secsToDisplay = "0".concat(timer.secs.toString());
+    clockDisplay.style.color = "red";
   }
   clockDisplay.innerHTML = minsToDisplay + ":" + secsToDisplay;
+}
+
+function playSound() {
+  var sound = document.getElementById('bell');
+  sound.play();
 }

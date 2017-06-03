@@ -5,3 +5,4 @@ dist/*
 misc/*
 assets/images/*
 *.log
+*.wav
