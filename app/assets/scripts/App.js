@@ -1,7 +1,7 @@
 var timerId;
-var workInterval = {mins: 2, secs: 0};
+var workInterval = {mins: 25, secs: 0};
 var currentWorkTimer = {mins: 0, secs: 10};
-var breakInterval = {mins: 1, secs: 0};
+var breakInterval = {mins: 5, secs: 0};
 var currentBreakTimer = {mins: 0, secs: 5};
 var isBreak = false;
 var timerIsRunning = false;
