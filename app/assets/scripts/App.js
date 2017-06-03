@@ -13,14 +13,13 @@ var worktimeSetter = document.getElementById('worktime-setter');
 var breaktimeSetter = document.getElementById('breaktime-setter');
 var setTimesButton = document.getElementById('set-times-button');
 
-clockDisplay.innerHTML = "Mins: " + workInterval.mins + " Secs: " + workInterval.secs;
 worktimeSetter.value = workInterval.secs;
 breaktimeSetter.value = breakInterval.secs;
 
 startButton.addEventListener('click', function(){startButtonClick()});
 setTimesButton.addEventListener('click', function(){setTimers()});
 
-//rest timers so all are initially derived from default input values
+//reset timers so all are initially derived from default input values
 setTimers();
 resetCurrentTimers();
 
@@ -36,7 +35,7 @@ function setTimers() {
   
 function resetDisplays() {
     workRestDisplay.innerHTML = "";
-    clockDisplay.innerHTML = "Mins: " + workInterval.mins + " Secs: " + workInterval.secs;
+    updateTimerDisplay(workInterval); 
 }
 
 function startButtonClick() {
@@ -72,7 +71,7 @@ function pauseTimer() {
 
 function timerTick(timer) {
   if ((timer.mins >= 0) && (timer.secs >= 0)) {
-    clockDisplay.innerHTML = "Mins: " + timer.mins + " Secs: " + timer.secs;
+    updateTimerDisplay(timer);
    if (timer.secs >= 1) {
       timer.secs --;
     } else {
@@ -94,4 +93,18 @@ function timerTick(timer) {
   }
 }
 
-
+function updateTimerDisplay(timer) {
+  var minsToDisplay, secsToDisplay;
+  if (timer.mins >= 10) {
+    minsToDisplay = timer.mins;
+  }  else {
+    minsToDisplay = "0".concat(timer.mins.toString());
+  }
+  
+  if (timer.secs >= 10) {
+    secsToDisplay = timer.secs;
+  }  else {
+    secsToDisplay = "0".concat(timer.secs.toString());
+  }
+  clockDisplay.innerHTML = minsToDisplay + " : " + secsToDisplay;
+}

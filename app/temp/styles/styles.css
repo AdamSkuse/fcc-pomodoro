@@ -454,3 +454,17 @@ template {
 body {
   padding: 40px 80px 40px 80px;
 }
+
+.container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.clock-display {
+  font-size: 5rem;
+}
+
+.work-rest-display {
+  min-height: 20px;
+}

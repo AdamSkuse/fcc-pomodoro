@@ -15,15 +15,22 @@
 </head>
 
 <body>
-  <h1>Pomodoro clock</h1>
-  
-  <button type="button" id="start-button">Start</button>
-  <div class="clock-display"><h3>Timer</h3><span id="clock-display"></span><br><span id="work-rest-display"></span></div>
-  <div class="settings-display">
-    <h3>Settings</h3>
-    Work period: <input id="worktime-setter" type="number" min="1" max="60" step="1"><br> 
-    Break period: <input id="breaktime-setter" type="number" min="1" max="60" step="1"><br>
-    <button type="button" id="set-times-button">Set times</button>
+  <div class="container">
+    <h1>Pomodoro clock</h1>
+    
+    <div class="clock-display">
+      <span id="clock-display"></span>
+    </div>
+    <div class="work-rest-display">
+      <span id="work-rest-display"></span>
+    </div>
+    <button type="button" id="start-button">Start</button>
+    <div class="settings-display">
+      <h3>Settings</h3>
+      Work period: <input id="worktime-setter" type="number" min="1" max="60" step="1"><br> 
+      Break period: <input id="breaktime-setter" type="number" min="1" max="60" step="1"><br>
+      <button type="button" id="set-times-button">Set times</button>
+    </div>
   </div>
   <!-- build:js assets/scripts/App.js -->
   <script src="assets/scripts/App.js"></script>
