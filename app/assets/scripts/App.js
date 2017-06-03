@@ -47,8 +47,11 @@ function startButtonClick() {
       workRestDisplay.innerHTML = "Break time!";
       startTimer(currentBreakTimer);
     }
+    startButton.innerHTML="Pause";
   } else {
     pauseTimer();
+    startButton.innerHTML="Start";
+
   }
 }
 
