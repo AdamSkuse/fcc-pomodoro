@@ -13,19 +13,18 @@ var worktimeSetter = document.getElementById('worktime-setter');
 var breaktimeSetter = document.getElementById('breaktime-setter');
 var setTimesButton = document.getElementById('set-times-button');
 
-function resetSetters(){
-  worktimeSetter.value = workInterval.mins;
-  breaktimeSetter.value = breakInterval.mins;
-}
-
-resetSetters();
-
 startButton.addEventListener('click', function(){startButtonClick()});
 setTimesButton.addEventListener('click', function(){setTimers()});
 
 //reset timers so all are initially derived from default input values
+resetSetters();
 setTimers();
 resetCurrentTimers();
+
+function resetSetters(){
+  worktimeSetter.value = workInterval.mins;
+  breaktimeSetter.value = breakInterval.mins;
+}
 
 function setTimers() {
   if (!timerIsRunning) {
@@ -42,10 +41,16 @@ function setTimers() {
   }
 }
   
+function resetCurrentTimers() {
+  currentBreakTimer.secs = breakInterval.secs;
+  currentBreakTimer.mins = breakInterval.mins;
+  currentWorkTimer.secs = workInterval.secs;
+  currentWorkTimer.mins = workInterval.mins;
+}
+
 function resetDisplays() {
     workRestDisplay.innerHTML = "";
     updateTimerDisplay(workInterval); 
-  
 }
 
 function startButtonClick() {
@@ -62,13 +67,6 @@ function startButtonClick() {
     pauseTimer();
     startButton.innerHTML="Start";
   }
-}
-
-function resetCurrentTimers() {
-  currentBreakTimer.secs = breakInterval.secs;
-  currentBreakTimer.mins = breakInterval.mins;
-  currentWorkTimer.secs = workInterval.secs;
-  currentWorkTimer.mins = workInterval.mins;
 }
 
 function startTimer(timer){
@@ -108,6 +106,7 @@ function timerTick(timer) {
 
 function updateTimerDisplay(timer) {
   var minsToDisplay, secsToDisplay;
+
   if (timer.mins >= 10) {
     minsToDisplay = timer.mins;
   }  else {
@@ -125,6 +124,7 @@ function updateTimerDisplay(timer) {
   }  else {
     secsToDisplay = "0".concat(timer.secs.toString());
   }
+
   clockDisplay.innerHTML = minsToDisplay + ":" + secsToDisplay;
 }
 

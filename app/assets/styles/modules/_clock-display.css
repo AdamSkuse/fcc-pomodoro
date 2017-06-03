@@ -1,0 +1,5 @@
+.clock-display {
+  font-size: 5rem;
+  padding: 20px;
+  text-shadow: 0 0 100px rgba(255, 255, 255, 0.98);
+}

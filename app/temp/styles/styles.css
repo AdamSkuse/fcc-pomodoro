@@ -464,42 +464,43 @@ body {
   text-align: center;
 }
 
+button {
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+  width: 200px;
+  border-color: #fff;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #000;
+  border-color: #ccc;
+}
+
+button:focus {
+  outline:none;
+}
+
 .clock-display {
   font-size: 5rem;
   padding: 20px;
   text-shadow: 0 0 100px rgba(255, 255, 255, 0.98);
 }
 
+.settings-display {
+  padding: 40px;
+
+}
+
+.settings-display__input {
+  padding: 10px;
+  }
+
 .work-rest-display {
   min-height: 20px;
   padding-bottom: 20px;
 }
-
-.settings-display {
-  padding: 40px;
-}
-
-button {
-    background-color: #000;
-    color: #fff;
-    padding: 5px;
-    width: 200px;
-    border-color: #fff;
-    border-radius: 5px;
-    font-family: 'Roboto Mono', monospace;
-    margin-top: 20px;
-  }
-
-button:hover {
-    background-color: #fff;
-    color: #000;
-    border-color: #ccc;
-  }
-
-button:focus {
-    outline:none;
-  }
-
-.input {
-    padding: 5px;
-  }

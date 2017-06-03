@@ -1,0 +1,8 @@
+.settings-display {
+  padding: 40px;
+
+  &__input {
+  padding: 10px;
+  }
+
+}
