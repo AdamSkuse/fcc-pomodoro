@@ -1,7 +1,7 @@
 var timerId;
-var workInterval = {mins: 0, secs: 10};
+var workInterval = {mins: 2, secs: 0};
 var currentWorkTimer = {mins: 0, secs: 10};
-var breakInterval = {mins: 0, secs: 5};
+var breakInterval = {mins: 1, secs: 0};
 var currentBreakTimer = {mins: 0, secs: 5};
 var isBreak = false;
 var timerIsRunning = false;
@@ -14,8 +14,8 @@ var breaktimeSetter = document.getElementById('breaktime-setter');
 var setTimesButton = document.getElementById('set-times-button');
 
 function resetSetters(){
-  worktimeSetter.value = workInterval.secs;
-  breaktimeSetter.value = breakInterval.secs;
+  worktimeSetter.value = workInterval.mins;
+  breaktimeSetter.value = breakInterval.mins;
 }
 
 resetSetters();
@@ -30,8 +30,8 @@ resetCurrentTimers();
 function setTimers() {
   if (!timerIsRunning) {
     if ((worktimeSetter.value >= 1 && worktimeSetter.value <= 59) && (breaktimeSetter.value >= 1 && breaktimeSetter.value <= 59)) {
-      workInterval.secs = worktimeSetter.value;
-      breakInterval.secs = breaktimeSetter.value;
+      workInterval.mins = worktimeSetter.value;
+      breakInterval.mins = breaktimeSetter.value;
       isBreak = false;
       resetDisplays();
       resetCurrentTimers();
@@ -61,7 +61,6 @@ function startButtonClick() {
   } else {
     pauseTimer();
     startButton.innerHTML="Start";
-
   }
 }
 
@@ -114,13 +113,17 @@ function updateTimerDisplay(timer) {
   }  else {
     minsToDisplay = "0".concat(timer.mins.toString());
   }
-  
+
+  if (timer.mins < 1) {
+    clockDisplay.style.color = "red";
+  } else {
+    clockDisplay.style.color = "#00ff00";
+  }
+
   if (timer.secs >= 10) {
     secsToDisplay = timer.secs;
-    clockDisplay.style.color = "#00ff00";
   }  else {
     secsToDisplay = "0".concat(timer.secs.toString());
-    clockDisplay.style.color = "red";
   }
   clockDisplay.innerHTML = minsToDisplay + ":" + secsToDisplay;
 }
